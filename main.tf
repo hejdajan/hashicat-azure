@@ -107,7 +107,6 @@ resource "azurerm_public_ip" "catapp-pip" {
 }
 
 resource "azurerm_linux_virtual_machine" "catapp" {
-  billable                        = true
   name                            = "${var.prefix}-meow"
   location                        = azurerm_resource_group.myresourcegroup.location
   resource_group_name             = azurerm_resource_group.myresourcegroup.name
@@ -115,6 +114,7 @@ resource "azurerm_linux_virtual_machine" "catapp" {
   admin_username                  = var.admin_username
   admin_password                  = var.admin_password
   disable_password_authentication = false
+  billable                        = true
   network_interface_ids           = [azurerm_network_interface.catapp-nic.id]
 
   source_image_reference {
